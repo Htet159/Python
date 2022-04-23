@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialMediaSite</title>
+</head>
+<body>
+    <h1 class="site-title p-5">SocialMediaSite</h1>
+    <div class="container d-flex justify-content-center">
+        <form action="/login" method='post'>
+            <h2>Login</h2>
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+            {% if messages %}
+            {% for message in messages %}
+            <p>{{message}}</p>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            <div class="mb-3">
+                <label for="email">Email:</label><br>
+                <input type="text" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="password">Password:</label><br>
+                <input type="password" name="password">
+            </div>
+            <div class="me-3">
+                <input class="btn btn-light" type="submit" value="Login">
+            </div>
+            <p>New to SocialMediaSite? <a href="/signup">Sign Up!</a></p>
+        </form>
+    </div>
+</body>
+</html>
