@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/filename.css')}}">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        {% if post.user_id == session.user_id %}
+        <div class="d-flex justify-content-around">
+            <form action="/restaurant/edit/{{restaurant.id}}">
+                <input class="btn btn-secondary" type="submit" value="Edit">
+            </form>
+            <form action="/restaurant/destroy/{{restaurant.id}}">
+                <input class="btn btn-secondary" type="submit" value="Delete">
+            </form>
+            <form action="/restaurant/{{restaurant.id}}">
+                <input class="btn btn-secondary" type="submit" value="View">
+            </form>
+        </div>
+        {% else %}
+        <form action="/restaurant/{{restaurant.id}}">
+            <input class="btn btn-secondary" type="submit" value="View">
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
