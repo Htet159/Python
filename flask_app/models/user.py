@@ -4,6 +4,7 @@ import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
+
 class User:
     # db = "recipe_sm"
     def __init__(self, data):
@@ -16,12 +17,12 @@ class User:
         self.updated_at = data['updated_at']
 
     @classmethod
-    def register_user(cls , data):
+    def register_user(cls, data):
         query = "INSERT INTO users(first_name, last_name, email, password) VALUES(%(first_name)s, %(last_name)s, %(email)s, %(password)s)"
         return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def get_user_by_id(cls , data):
+    def get_user_by_id(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db).query_db(query, data)
         if len(results) > 0:
@@ -29,7 +30,7 @@ class User:
         return False
 
     @classmethod
-    def get_user_by_email(cls , data):
+    def get_user_by_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
         results = connectToMySQL(cls.db).query_db(query, data)
         if len(results) < 1:
@@ -60,7 +61,7 @@ class User:
     def validate_login(user):
         is_valid = True
         data = {
-            'email' : user['email']
+            'email': user['email']
         }
         user_in_db = User.get_user_by_email(data)
         if not user_in_db:
