@@ -10,9 +10,47 @@
     <title>SocialMediaSite - Profile</title>
 </head>
 <body>
-        <div class="container d-flex justify-content-between my-5">
+    <div class="container">
+
+        <!-- SITE TITLE / HEADER -->
+        <div class="d-flex justify-content-between my-5">
             <h1>SocialMediaSite</h1>
             <h3><a href="#">Dashboard</a> | <a href="/logout">Sign Out</a | ></h3>
         </div>
+
+        <!-- USER IMAGE / NAME / VIEW POSTS BUTTON -->
+        <div class="d-flex justify-content-around">
+            <div class="single-friend">
+                <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                    alt="placeholder image"><br>
+                <a class="btn btn-primary" href="#">Add Friend</a>
+            </div>
+            <div>
+                <h2>Profile</h2>
+                <h3>Name: Izuku Midoriya</h3>
+                <a class="btn btn-primary" href="#">View My Posts</a>
+            </div>
+        </div>
+        <div class="my-5">
+            <h2>Friends</h2>
+            <div class="friends d-flex justify-content-between">
+                <div class="single-friend">
+                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        alt="placeholder image"><br>
+                    <a class="btn btn-primary" href="#">Remove Friend</a>
+                </div>
+                <div class="single-friend">
+                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        alt="placeholder image"><br>
+                    <a class="btn btn-primary" href="#">Remove Friend</a>
+                </div>
+                <div class="single-friend">
+                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        alt="placeholder image"><br>
+                    <a class="btn btn-primary" href="#">Remove Friend</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
