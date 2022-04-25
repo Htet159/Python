@@ -15,7 +15,7 @@
         <!-- SITE TITLE / HEADER -->
         <div class="d-flex justify-content-between my-5">
             <h1>SocialMediaSite</h1>
-            <h3><a href="#">Dashboard</a> | <a href="/logout">Sign Out</a | ></h3>
+            <h3><a href="/dashboard">Dashboard</a> | <a href="/logout">Sign Out</a | ></h3>
         </div>
 
         <!-- USER IMAGE / NAME / VIEW POSTS BUTTON -->
@@ -27,8 +27,8 @@
             </div>
             <div>
                 <h2>Profile</h2>
-                <h3>Name: Izuku Midoriya</h3>
-                <a class="btn btn-primary" href="#">View My Posts</a>
+                <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
+                <a class="btn btn-primary" href="/user/posts">View My Posts</a>
             </div>
         </div>
 

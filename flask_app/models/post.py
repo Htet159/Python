@@ -30,3 +30,19 @@ class Post:
             posts.append((post_data))
         # print(posts)
         return posts 
+
+    @staticmethod
+    def validate_post(data):
+        is_valid = True 
+        if len(data['content']) < 10:
+            flash("Post must be at least 10 charecters", 'post')
+            is_valid = False
+        if len(data['user_id']) <= 0:
+            flash('err', 'post')
+            is_valid = False
+        return is_valid
+    
+    @classmethod
+    def post(cls,data):
+        query = "INSERT INTO posts (content,user_id) VALUES(%(content)s,%(user_id)s);"
+        return connectToMySQL(cls.db).query_db(query,data)

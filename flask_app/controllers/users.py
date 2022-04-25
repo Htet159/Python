@@ -41,7 +41,7 @@ def login_user():
         return redirect('/')
     if not bcrypt.check_password_hash(user.password, request.form['password']): #if the hashed password does not match the hashed password submitted
         flash('Invalid Email Address or Password', 'login')
-        return redirect('/l')
+        return redirect('/')
     session['user_id'] = user.id #place login id into sessions
     return redirect('/dashboard')
 
@@ -56,6 +56,27 @@ def dashboard():
     user = User.get_user_by_id(data)  #grabs login information using login id from sessions
     posts = Post.allPostsWithUserInfo() #grabs all posts with their user information and their cheer information
     return render_template('dashboard.html' , user = user, posts = posts) #connects html and brings in variables into html
+
+
+@app.route('/profile')
+def profile():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data={
+        'id':session['user_id']
+    }
+    user = User.get_user_by_id(data)
+    return render_template('profile.html' , user = user) #connects html and brings in variables into html
+
+@app.route('/user/posts')
+def posts():
+    if 'user_id' not in session:
+        return redirect('/logout')
+    data={
+        'id':session['user_id']
+    }
+    user = User.get_user_by_id(data)
+    return render_template('user_posts.html' , user = user) 
 
 @app.route('/logout')
 def logout():
