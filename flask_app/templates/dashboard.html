@@ -48,11 +48,12 @@
 
 <!-- POST LIST -->
                 <div class="my-5">
-                    {% for post in one_post %}
+                    {% for post in posts %}
                     <div>
-                        <p>{{post.message}}</p>
+                        <p>{{post.content}}</p>
                         <div class="d-flex justify-content-between">
-                            <p>Added By: {{post.first_name}} {{post.last_name}}</p> 
+                            <p>Added By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
+                            <p>created: {{post.created_at.strftime('%d-%m-%Y')}}</p>
                             <a class="btn btn-primary" href="#">0 Like(s)</a>
                         </div>
                     </div>

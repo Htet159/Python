@@ -26,10 +26,8 @@ class User:
     def get_user_by_id(cls, data):
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db).query_db(query, data)
-        if len(results) > 0:
-            return cls(results[0])
-        return False
-
+        return cls(results[0])
+        
     @classmethod
     def get_user_by_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
@@ -41,30 +39,35 @@ class User:
     @staticmethod
     def validate_user(user):
         is_valid = True
+        query = "SELECT * FROM  users WHERE email = %(email)s ;" # checks if email is already in the database 
+        results = connectToMySQL('portfolio_model').query_db(query,user)
+        if len(results)>= 1: # if statement to check if email is already in the database 
+            flash("Email is already taken", 'register') 
+            is_valid = False
         if len(user['first_name']) < 1:
-            flash("First name must be at least 2 characters")
+            flash("First name must be at least 2 characters", 'register')
             is_valid = False
         if len(user['last_name']) < 1:
-            flash("Last name must be at least 2 characters")
+            flash("Last name must be at least 2 characters", 'register')
             is_valid = False
         if len(user['password']) < 8:
-            flash("Password must be at least 8 characters")
+            flash("Password must be at least 8 characters", 'register')
             is_valid = False
         if user['password'] != user['confirm_password']:
-            flash("Passwords must match")
+            flash("Passwords must match", 'register')
             is_valid = False
         if not EMAIL_REGEX.match(user['email']):
-            flash("Invalid email address!")
+            flash("Invalid email address", 'register')
             is_valid = False
         return is_valid
 
-    @staticmethod
-    def validate_login(user):
-        is_valid = True
-        data = {
-            'email': user['email']
-        }
-        user_in_db = User.get_user_by_email(data)
-        if not user_in_db:
-            is_valid = False
-        return is_valid
+    # @staticmethod
+    # def validate_login(user):
+    #     is_valid = True
+    #     data = {
+    #         'email': user['email']
+    #     }
+    #     user_in_db = User.get_user_by_email(data)
+    #     if not user_in_db:
+    #         is_valid = False
+    #     return is_valid
