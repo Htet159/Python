@@ -5,9 +5,11 @@ from flask_app.models.user import User
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+
 @app.route('/')
 def log_and_reg():
     return render_template("index.html")
+
 
 @app.route('/register', methods=["POST"])
 def register_user():
@@ -16,21 +18,22 @@ def register_user():
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     register_data = {
         'first_name': request.form['first_name'],
-        'last_name' :request.form['last_name'],
-        'email' : request.form['email'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email'],
         'password': pw_hash
     }
     user_id = User.register_user(register_data)
     session['user_id'] = user_id
     return redirect('/dashboard')
 
-@app.route('/login' , methods=["POST"])
+
+@app.route('/login', methods=["POST"])
 def login_user():
     if not User.validate_login(request.form):
         flash("Email and/or password is incorrect")
         return redirect('/')
     user_data = {
-        'email' : request.form['email']
+        'email': request.form['email']
     }
     user = User.get_user_by_email(user_data)
     if user:
@@ -48,8 +51,8 @@ def login_user():
 #     }
 #     return render_template("dashboard.html", user=User.get_user_by_id(user_data))
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
-
