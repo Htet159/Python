@@ -12,7 +12,7 @@ h1 {
     color: #fff;
 }
 
-.login {
+.login, .register {
     background-image: 
     linear-gradient(to right, rgba(59, 89, 152, 1), rgba(66, 161, 236, 1), rgba(223, 223, 223, 0.7)),
     url('/static/images/bg-3.jpeg');
@@ -32,7 +32,11 @@ h1 {
     /* text-align: center; */
 }
 
-.login-btn {
+.form-left {
+    margin-left: 110px;
+}
+
+.login-btn, .register-btn {
     color: #fff;
     background-color: #F5055A;
     border-radius: 25px;
@@ -51,12 +55,16 @@ h1 {
     border-style: solid;
 }
 
+.reg-title {
+    margin-bottom: -10px;
+}
+
 h1.site-title {
     color: #fff;
     width: 129px;
 }
 
-.login-text {
+.login-text, .register-text {
     font-weight: bold;
     color:#B9DEFA;
 }
@@ -106,9 +114,13 @@ input {
     border-bottom-right-radius: 40px;
 }
 
+input#longer {
+    width: 120%;
+}
+
 label {
     display: block;
-    font-size: 12px;
+    font-size: 13px;
     color: #F5055A;
     background-color: white;
     padding: 10px;
@@ -118,6 +130,9 @@ label {
     border-top-right-radius: 40px;
 }
 
+label#long {
+    width: 120%;
+}
 /* ANIMATED TEXT */
 
 div.text {
