@@ -6,6 +6,7 @@ from flask_app.models.post import Post
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
+
 @app.route('/')
 def log_and_reg():
     return render_template("index.html")
@@ -14,7 +15,6 @@ def log_and_reg():
 def signup():
     return render_template('register.html')
 
-
 @app.route('/register', methods=["POST"])
 def register_user():
     if not User.validate_user(request.form):
@@ -22,18 +22,19 @@ def register_user():
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     register_data = {
         'first_name': request.form['first_name'],
-        'last_name' :request.form['last_name'],
-        'email' : request.form['email'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email'],
         'password': pw_hash
     }
     user_id = User.register_user(register_data)
     session['user_id'] = user_id
     return redirect('/dashboard')
 
-@app.route('/login' , methods=["POST"])
+
+@app.route('/login', methods=["POST"])
 def login_user():
     user_data = {
-        'email' : request.form['email']
+        'email': request.form['email']
     }
     user = User.get_user_by_email(user_data)
     if not user:
@@ -78,8 +79,8 @@ def posts():
     user = User.get_user_by_id(data)
     return render_template('user_posts.html' , user = user) 
 
+
 @app.route('/logout')
 def logout():
     session.clear()
     return redirect('/')
-

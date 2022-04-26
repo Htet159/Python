@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <title>SocialMediaSite - Register</title>
+    <title>SHAREit - Register</title>
 </head>
-<body>
-    <h1 class="p-5">SocialMediaSite</h1>
-    <div class="container d-flex justify-content-center">
+<body class="register">
+    <h1 class="site-title reg-title">SHAREit</h1>
+    <div class="container login-form form-left">
         <form action="/register" method='post' class="p-5">
-            <h2 class="text-dark">Register</h2>
+            <h2 class="register-text">Register</h2>
             {% with messages = get_flashed_messages(category_filter=['register']) %}
             {% if messages %}
             {% for message in messages %}
@@ -21,28 +25,30 @@
             {% endfor %}
             {% endif %}
             {% endwith %}
-            <div class="mb-3">
-                <label for="first_name">First Name:</label><br>
-                <input type="text" name="first_name">
+            <div class="full-input my-3">
+                <label id="long" for="first_name">First Name:</label>
+                <input id="longer" type="text" name="first_name">
             </div>
-            <div class="mb-3">
-                <label for="last_name">Last Name:</label><br>
-                <input type="text" name="last_name">
+            <div class="full-input my-3">
+                <label id="long" for="last_name">Last Name:</label>
+                <input id="longer" type="text" name="last_name">
             </div>
-            <div class="mb-3">
-                <label for="email">Email:</label><br>
-                <input type="text" name="email">
+            <div class="full-input my-3">
+                <label id="long" for="email">Email:</label>
+                <input id="longer" type="text" name="email">
             </div>
-            <div class="mb-3">
-                <label for="password">Password:</label><br>
-                <input type="password" name="password">
+            <div class="full-input my-3">
+                <label id="long" for="password">Password:</label>
+                <input id="longer" type="password" name="password">
             </div>
-            <div class="mb-3">
-                <label for="confirm_password">Confirm Password:</label><br>
-                <input type="password" name="confirm_password">
+
+            <div class="full-input my-3">
+                <label id="long" for="confirm_password">Confirm Password:</label>
+                <input id="longer" type="password" name="confirm_password">
             </div>
-            <div class="me-3">
-                <input class="btn btn-light" type="submit" value="Register">
+          
+            <div>
+                <input class="btn register-btn my-3" type="submit" value="Register">
             </div>
             <p>Already signed up? <a href="/">Login</a></p>
         </form>
