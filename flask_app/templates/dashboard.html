@@ -15,7 +15,7 @@
 <!-- SITE TITLE / HEADER -->
     <div class="container d-flex justify-content-between my-5">
         <h1>SocialMediaSite</h1>
-        <h3><a href="#">Profile</a> | <a href="/logout">Sign Out</a></h3>
+        <h3><a href="/profile">Profile</a> | <a href="/logout">Sign Out</a></h3>
     </div>
 
 <!-- WELCOME -->
@@ -29,7 +29,7 @@
 <!-- CREATE POST FORM -->
         <div class="main">
             <div class="my-5">
-                <form action="#" method='post' class="bg-light p-5">
+                <form action="/create/post" method='post' class="bg-light p-5">
                     {% with messages = get_flashed_messages(category_filter=['post']) %}
                     {% if messages %}
                     {% for message in messages %}
@@ -39,8 +39,9 @@
                     {% endwith %}
                     <div class="comment">
                         <div class="mb-3">
-                            <label for="name">Write a post:</label><br>
-                            <input type="text" name="name" class="form-control">
+                            <label for="content">Write a post:</label><br>
+                            <input type="text" name="content" class="form-control">
+                            <input type="hidden" name="user_id" value="{{user.id}}">
                         </div>
                     </div>
                     <input class="btn btn-warning my-3" type="submit" value="Add New">
@@ -48,11 +49,12 @@
 
 <!-- POST LIST -->
                 <div class="my-5">
-                    {% for post in one_post %}
+                    {% for post in posts %}
                     <div>
-                        <p>{{post.message}}</p>
+                        <p>{{post.content}}</p>
                         <div class="d-flex justify-content-between">
-                            <p>Added By: {{post.first_name}} {{post.last_name}}</p> 
+                            <p>Added By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
+                            <p>created: {{post.created_at.strftime('%d-%m-%Y')}}</p>
                             <a class="btn btn-primary" href="#">0 Like(s)</a>
                         </div>
                     </div>
