@@ -55,7 +55,7 @@
                         <div class="d-flex justify-content-between">
                             <p>Added By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
                             <p>created: {{post.created_at.strftime('%d-%m-%Y')}}</p>
-                            <a class="btn btn-primary" href="/like/{{post['id']}}">0 Like(s)</a>
+                            <a class="btn btn-primary" href="/like/{{post['id']}}">{{post['likes']}} Like(s)</a>
                         </div>
                     </div>
                     <hr>
