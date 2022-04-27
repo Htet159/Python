@@ -1,5 +1,3 @@
-from turtle import fillcolor
-from unittest import result
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash
 import re
@@ -64,6 +62,7 @@ class User:
             is_valid = False
         return is_valid
 
+
     @classmethod
     def usersFriends(cls, data):
         query = """SELECT friend.first_name, friend.last_name,following.* from users
@@ -123,6 +122,7 @@ class User:
     #     if not user_in_db:
     #         is_valid = False
     #     return is_valid
+
 
     @classmethod
     def like_or_unlike_post(cls, data):
