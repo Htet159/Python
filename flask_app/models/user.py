@@ -65,32 +65,32 @@ class User:
         return is_valid
 
     @classmethod
-    def usersFriends(cls,data):
+    def usersFriends(cls, data):
         query = """SELECT friend.first_name, friend.last_name,following.* from users
         JOIN following  on users.id = user_id
         JOIN users as friend on following.following_id = friend.id
         where users.id = %(id)s;"""
-        results = connectToMySQL(cls.db).query_db(query,data)
-        friends =[]
+        results = connectToMySQL(cls.db).query_db(query, data)
+        friends = []
         for result in results:
             friend_data = {
-                'first_name':result['first_name'],
-                'last_name':result['last_name'],
+                'first_name': result['first_name'],
+                'last_name': result['last_name'],
                 'following_id': result['following_id']
             }
             friends.append(friend_data)
         print(friends)
         return friends
 
-    @classmethod #just to get something on the html
-    #there must be a way we can use if statements to track is this users id relateds to the following of the logins following_id's
-    def allFriendSuggestions(cls,data):
-        query ="""SELECT users.id, users.first_name, users.last_name, users.created_at from users
+    @classmethod  # just to get something on the html
+    # there must be a way we can use if statements to track is this users id relateds to the following of the logins following_id's
+    def allFriendSuggestions(cls, data):
+        query = """SELECT users.id, users.first_name, users.last_name, users.created_at from users
         join following on following.following_id = users.id
         join users as login on login.id = following.user_id 
         where following_id NOT IN(select following_id from following where user_id = %(id)s)
         and users.id != %(id)s ;"""
-        results = connectToMySQL(cls.db).query_db(query,data)
+        results = connectToMySQL(cls.db).query_db(query, data)
         users = []
         for user in results:
             user = {
@@ -102,20 +102,16 @@ class User:
             users.append(user)
         print(users)
         return users
-    
+
     @classmethod
-    def addFriend(cls,data):
+    def addFriend(cls, data):
         query = 'INSERT INTO following (user_id,following_id) VALUES (%(user_id)s,%(following_id)s);'
-        return connectToMySQL(cls.db).query_db(query,data)
+        return connectToMySQL(cls.db).query_db(query, data)
 
     @classmethod
-    def removeFriend(cls,data):
+    def removeFriend(cls, data):
         query = 'DELETE FROM following WHERE user_id = %(user_id)s AND following_id = %(following_id)s ;'
-        return connectToMySQL(cls.db).query_db(query,data)
-
-
-
-
+        return connectToMySQL(cls.db).query_db(query, data)
 
     # @staticmethod
     # def validate_login(user):
@@ -138,4 +134,3 @@ class User:
         else:
             query_2 = "DELETE FROM likes WHERE post_id = %(post_id)s;"
             return connectToMySQL(cls.db).query_db(query_2, data)
-

@@ -24,51 +24,45 @@
         <div class="profile my-5">
             <!-- USER IMAGE / NAME / VIEW POSTS BUTTON -->
             <div class="top-section d-flex justify-content-around">
-            <div class="single-friend">
-                <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                    alt="placeholder image"><br>
-                <a class="btn btn-primary" href="#">Add Friend</a>
-            </div>
-            <div>
-                <h2>Profile</h2>
-                <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
-                    <form action="/user/posts">
+                <div class="single-friend">
+                    <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
+                        alt="placeholder image"><br>
+                    <!-- <form action="/user/posts">
                         <input class="btn btn-secondary my-3" type="submit" value="Upload IMG">
-                    </form>
+                    </form> -->
                 </div>
                 <div>
                     <h2>Profile</h2>
                     <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
-                    <!-- <a class="btn btn-primary" href="/user/posts">View My Posts</a> -->
-                    <form action="/user/posts">
-                        <input class="btn btn-primary my-3" type="submit" value="View My Posts">
-                    </form>
+                    <!-- <form action="/user/posts">
+                        <input class="btn login-btn share-btn my-3" type="submit" value="View My Posts">
+                    </form> -->
                 </div>
             </div>
     
             <!-- FRIENDS SECTION -->
             <div class="friend-section my-5">
-                <h2>Friends</h2>
+                <h2>All User's Posts</h2>
                 <div class="friends d-flex justify-content-between">
-                  {%for friend in friends %}
+                {%for friend in friends %}
                     <div class="single-friend">
                         <p>{{friend.first_name}} {{friend.last_name}}</p>
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
                             alt="placeholder image">
                         <form action="/removefriend/{{friend.following_id}}">
                             <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
                         </form>
                     </div>
-                  {%endfor%}
+                {%endfor%}
 <!--                     <div class="single-friend">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
                             alt="placeholder image">
                         <form action="#">
                             <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
                         </form>
                     </div>
                     <div class="single-friend">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
                             alt="placeholder image">
                         <form action="#">
                             <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
