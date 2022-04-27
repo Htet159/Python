@@ -128,14 +128,5 @@ class User:
     #         is_valid = False
     #     return is_valid
 
-    @classmethod
-    def like_or_unlike_post(cls, data):
-        pre_query = "SELECT * FROM likes WHERE post_id = %(post_id)s;"
-        results = connectToMySQL(cls.db).query_db(pre_query, data)
-        if len(results) <= 0:
-            query = "INSERT INTO likes(user_id, post_id) VALUES(%(user_id)s, %(post_id)s);"
-            return connectToMySQL(cls.db).query_db(query, data)
-        else:
-            query_2 = "DELETE FROM likes WHERE post_id = %(post_id)s;"
-            return connectToMySQL(cls.db).query_db(query_2, data)
+
 

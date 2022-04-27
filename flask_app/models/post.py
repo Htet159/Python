@@ -12,6 +12,8 @@ class Post:
         self.updated_at = data['updated_at']
         self.user_id = None
 
+
+
     @classmethod
     def allPostsWithUserInfo(cls):
         query = "SELECT posts.*, users.first_name, users.last_name FROM posts JOIN users on posts.user_id = users.id;"
@@ -48,4 +50,41 @@ class Post:
     @classmethod
     def post(cls, data):
         query = "INSERT INTO posts (content,user_id) VALUES(%(content)s,%(user_id)s);"
+        return connectToMySQL(cls.db).query_db(query,data)
+
+    @classmethod
+    def edit_post(cls, data):
+        query = "UPDATE posts SET content = %(content)s WHERE id = %(id)s;"
         return connectToMySQL(cls.db).query_db(query, data)
+
+    @classmethod
+    def like_or_unlike_post(cls, data):
+        pre_query = "SELECT * FROM likes WHERE post_id = %(p_id)s and user_id = %(u_id)s;"
+        results = connectToMySQL(cls.db).query_db(pre_query, data)
+        if len(results) <= 0:
+            query = "INSERT INTO likes(user_id, post_id) VALUES(%(u_id)s, %(p_id)s);"
+            return connectToMySQL(cls.db).query_db(query, data)
+        else:
+            query_2 = "DELETE FROM likes WHERE post_id = %(p_id)s and user_id = %(u_id)s;"
+            return connectToMySQL(cls.db).query_db(query_2, data)
+
+    @classmethod
+    def all_posts_with_likes_and_users(cls):
+        query = "SELECT posts.*, users.first_name, users.last_name, count(likes.id) AS likes FROM posts LEFT JOIN likes ON posts.id = post_id LEFT JOIN users ON posts.user_id = users.id GROUP BY posts.id;" #this grabs the necessary post along with the associated likes and users.
+        results = connectToMySQL(cls.db).query_db(query) # make the database results into a variable "results"
+        posts = []
+        for post_row in results:
+            user_id = { #data dictionary for login data 
+                'first_name' : post_row['first_name'],
+                'last_name' : post_row['last_name']
+            }
+            post_data = {
+                "id" : post_row['id'],
+                "likes" : post_row['likes'],
+                "content" : post_row['content'],
+                "created_at" : post_row['created_at'],
+                "updated_at" : post_row['updated_at'],
+                'user_id' : user_id
+            }
+            posts.append(post_data)
+        return posts
