@@ -1,3 +1,4 @@
+from distutils.command.build_scripts import first_line_re
 from flask import render_template, redirect, session, request, flash
 from flask_app import app
 from flask_app.models.user import User
@@ -56,7 +57,28 @@ def dashboard():
     }
     user = User.get_user_by_id(data)  #grabs login information using login id from sessions
     posts = Post.allPostsWithUserInfo() #grabs all posts with their user information and their cheer information
-    return render_template('dashboard.html' , user = user, posts = posts) #connects html and brings in variables into html
+    friends_suggest = User.allFriendSuggestions(data)# for now showing all friends not friends with (no mutuals)
+    
+    return render_template('dashboard.html' , user = user, posts = posts, friends_suggest = friends_suggest) #connects html and brings in variables into html
+
+@app.route('/addfriend/<int:id>')
+def addfriend(id):
+    data ={
+        'user_id': session['user_id'],
+        'following_id': id
+    }
+    User.addFriend(data)
+    return redirect('/dashboard')
+
+@app.route('/removefriend/<int:id>')
+def removefriend(id):
+    data ={
+        'user_id': session['user_id'],
+        'following_id': id
+    }
+    User.removeFriend(data)
+    return redirect('/profile')
+
 
 
 @app.route('/profile')
@@ -67,7 +89,8 @@ def profile():
         'id':session['user_id']
     }
     user = User.get_user_by_id(data)
-    return render_template('profile.html' , user = user) #connects html and brings in variables into html
+    friends = User.usersFriends(data)
+    return render_template('profile.html' , user = user, friends = friends) #connects html and brings in variables into html
 
 @app.route('/user/posts')
 def posts():

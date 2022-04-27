@@ -36,7 +36,15 @@
         <div class="my-5">
             <h2>Friends</h2>
             <div class="friends d-flex justify-content-between">
+                {%for friend in friends %}
                 <div class="single-friend">
+                    <p>{{friend.first_name}} {{friend.last_name}}</p>
+                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                        alt="placeholder image"><br>
+                    <a class="btn btn-primary" href="/removefriend/{{friend.following_id}}">Remove Friend</a>
+                </div>
+                {%endfor%}
+                <!-- <div class="single-friend">
                     <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
                         alt="placeholder image"><br>
                     <a class="btn btn-primary" href="#">Remove Friend</a>
@@ -45,12 +53,7 @@
                     <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
                         alt="placeholder image"><br>
                     <a class="btn btn-primary" href="#">Remove Friend</a>
-                </div>
-                <div class="single-friend">
-                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                        alt="placeholder image"><br>
-                    <a class="btn btn-primary" href="#">Remove Friend</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

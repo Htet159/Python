@@ -68,15 +68,18 @@
         <div class="sidebar col-3">
             <h3>Friend Suggestions</h3>
             <div class="friend d-flex justify-content-between">
-                <div class="single-friend">
-                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}" alt="placeholder image"><br>
-                    <a class="btn btn-primary" href="#">Add Friend</a>
-                </div>
-                <div class="single-friend">
+                {% for friend in friends_suggest%}
+                    <div class="single-friend">
+                        <p>{{friend.first_name}} {{friend.last_name}}</p>
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}" alt="placeholder image"><br>
+                        <a class="btn btn-primary" href="/addfriend/{{friend.id}}">Add Friend</a>
+                    </div>
+                {%endfor%}
+                <!-- <div class="single-friend">
                     <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
                         alt="placeholder image"><br>
                     <a class="btn btn-primary" href="#">Add Friend</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
