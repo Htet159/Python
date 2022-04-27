@@ -7,49 +7,64 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-    <title>SocialMediaSite - Profile</title>
+    <title>SHAREit - Profile</title>
 </head>
 <body>
-    <div class="container">
+    <div class="dashboard">
 
         <!-- SITE TITLE / HEADER -->
-        <div class="d-flex justify-content-between my-5">
-            <h1>SocialMediaSite</h1>
-            <h3><a href="/dashboard">Dashboard</a> | <a href="/logout">Sign Out</a | ></h3>
+        <div class="nav d-flex justify-content-between">
+            <h1 class="blue-title">SHAREit</h1>
+            <h3 class="d-flex justify-content-around">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link ml-3" href="/logout">Sign Out</a>
+            </h3>
         </div>
-
-        <!-- USER IMAGE / NAME / VIEW POSTS BUTTON -->
-        <div class="d-flex justify-content-around">
-            <div class="single-friend">
-                <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                    alt="placeholder image"><br>
-                <a class="btn btn-primary" href="#">Add Friend</a>
-            </div>
-            <div>
-                <h2>Profile</h2>
-                <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
-                <a class="btn btn-primary" href="/user/posts">View My Posts</a>
-            </div>
-        </div>
-
-        <!-- FRIENDS SECTION -->
-        <div class="my-5">
-            <h2>Friends</h2>
-            <div class="friends d-flex justify-content-between">
+        <div class="profile my-5">
+            <!-- USER IMAGE / NAME / VIEW POSTS BUTTON -->
+            <div class="top-section d-flex justify-content-around">
                 <div class="single-friend">
                     <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
                         alt="placeholder image"><br>
-                    <a class="btn btn-primary" href="#">Remove Friend</a>
+                    <form action="/user/posts">
+                        <input class="btn btn-secondary my-3" type="submit" value="Upload IMG">
+                    </form>
                 </div>
-                <div class="single-friend">
-                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                        alt="placeholder image"><br>
-                    <a class="btn btn-primary" href="#">Remove Friend</a>
+                <div>
+                    <h2>Profile</h2>
+                    <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
+                    <!-- <a class="btn btn-primary" href="/user/posts">View My Posts</a> -->
+                    <form action="/user/posts">
+                        <input class="btn btn-primary my-3" type="submit" value="View My Posts">
+                    </form>
                 </div>
-                <div class="single-friend">
-                    <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                        alt="placeholder image"><br>
-                    <a class="btn btn-primary" href="#">Remove Friend</a>
+            </div>
+    
+            <!-- FRIENDS SECTION -->
+            <div class="friend-section my-5">
+                <h2>Friends</h2>
+                <div class="friends d-flex justify-content-between">
+                    <div class="single-friend">
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                            alt="placeholder image">
+                        <form action="#">
+                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
+                        </form>
+                    </div>
+                    <div class="single-friend">
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                            alt="placeholder image">
+                        <form action="#">
+                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
+                        </form>
+                    </div>
+                    <div class="single-friend">
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                            alt="placeholder image">
+                        <form action="#">
+                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
