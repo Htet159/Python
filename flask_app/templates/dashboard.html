@@ -35,6 +35,7 @@
                         <!-- <h2 class="welcome">Friend Suggestions</h2> -->
                     </div>
                     <div>
+
                         <!-- CREATE POST FORM -->
                         <form action="/create/post" method='post' class="bg-comment p-5 my-3">
                             {% with messages = get_flashed_messages(category_filter=['post']) %}
@@ -62,7 +63,7 @@
                                 <div class="d-flex justify-content-between">
                                     <p>Posted By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
                                     <p>Created On: {{post.created_at.strftime('%d-%m-%Y')}}</p>
-                                    <form action="#">
+                                    <form action="/like/{{post['id']}}">
                                         <input class="btn btn-friend my-3" type="submit" value="0 Like(s)">
                                     </form>
                                 </div>
@@ -78,19 +79,23 @@
             <div class="sidebar my-5">
                 <h2 class="welcome">Friend Suggestions</h2>
                 <div class="friend d-flex justify-content-between my-3">
-                    <div class="single-friend friend-1">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}" alt="placeholder image"><br>
-                        <form action="#">
-                            <input class="btn btn-friend my-3" type="submit" value="Add Friend">
-                        </form>
-                    </div>
-                    <div class="single-friend">
+                   {% for friend in friends_suggest%}
+                      <div class="single-friend friend-1">
+                          <p>{{friend.first_name}} {{friend.last_name}}</p>
+                          <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}" alt="placeholder image"><br>
+                          <form action="/addfriend/{{friend.id}}">
+                              <input class="btn btn-friend my-3" type="submit" value="Add Friend">
+                          </form>
+                      </div>
+                   {%endfor%}
+                  
+<!--                     <div class="single-friend">
                         <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
                             alt="placeholder image"><br>
                         <form action="#">
                             <input class="btn btn-friend my-3" type="submit" value="Add Friend">
                         </form>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
