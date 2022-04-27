@@ -29,7 +29,7 @@ class User:
         query = "SELECT * FROM users WHERE id = %(id)s;"
         results = connectToMySQL(cls.db).query_db(query, data)
         return cls(results[0])
-        
+
     @classmethod
     def get_user_by_email(cls, data):
         query = "SELECT * FROM users WHERE email = %(email)s;"
@@ -41,10 +41,11 @@ class User:
     @staticmethod
     def validate_user(user):
         is_valid = True
-        query = "SELECT * FROM  users WHERE email = %(email)s ;" # checks if email is already in the database 
-        results = connectToMySQL('portfolio_model').query_db(query,user)
-        if len(results)>= 1: # if statement to check if email is already in the database 
-            flash("Email is already taken", 'register') 
+        # checks if email is already in the database
+        query = "SELECT * FROM  users WHERE email = %(email)s ;"
+        results = connectToMySQL('portfolio_model').query_db(query, user)
+        if len(results) >= 1:  # if statement to check if email is already in the database
+            flash("Email is already taken", 'register')
             is_valid = False
         if len(user['first_name']) < 1:
             flash("First name must be at least 2 characters", 'register')
