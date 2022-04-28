@@ -103,5 +103,15 @@ class Post:
                 "user_id" : post_row['user_id']
             }
             posts.append(post_data)
-        print(posts)
         return posts
+
+    @classmethod
+    def get_post_by_id(cls, data):
+        query = "SELECT * FROM posts WHERE id = %(id)s;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results[0]
+
+    @classmethod
+    def delete_post(cls, data):
+        query = "DELETE FROM posts WHERE id = %(id)s;"
+        return connectToMySQL(cls.db).query_db(query, data)

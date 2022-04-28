@@ -90,7 +90,8 @@ def profile():
     }
     user = User.get_user_by_id(data)
     friends = User.usersFriends(data)
-    return render_template('profile.html' , user = user, friends = friends) #connects html and brings in variables into html
+    posts = Post.get_post_with_user_by_id(data)
+    return render_template('profile.html' , user = user, friends = friends, posts = posts) #connects html and brings in variables into html
 
 @app.route('/user/posts')
 def posts():

@@ -16,19 +16,19 @@
     </div>
 
     <div>
-        <form action="#" method='post' class="bg-light p-5">
+        <form action="/update/post" method = "post" class="bg-light p-5">
             {% with messages = get_flashed_messages(category_filter=['post']) %}
-            {% if messages %}
-            {% for message in messages %}
-            <p>{{message}}</p>
-            {% endfor %}
-            {% endif %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
             {% endwith %}
             <div class="comment">
-                <input type="hidden" name="id" value="{{post.id}}">
+                <input type="hidden" name="id" value="{{posts['id']}}">
                 <div class="mb-3">
-                    <label for="name">Write a post:</label><br>
-                    <input type="text" name="name" class="form-control" value="{{post.message}}">
+                    <label for="content">Write a post:</label><br>
+                    <input type="text" name="content" class="form-control" value="{{posts['content']}}">
                 </div>
             </div>
             <input class="btn my-3" type="submit" value="Update Post">
