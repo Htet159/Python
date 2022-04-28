@@ -35,6 +35,8 @@
                         <!-- <h2 class="welcome">Friend Suggestions</h2> -->
                     </div>
                     <div>
+
+
                         <!-- CREATE POST FORM -->
                         <form action="/create/post" method = "post" class="bg-comment p-5 my-3">
                             {% with messages = get_flashed_messages(category_filter=['post']) %}
@@ -55,7 +57,7 @@
                         </form>
                         
                         <!-- POST LIST -->
-                        <div class="my-5">
+                        <div class="my-5 post">
                             {% for post in posts %}
                             <div>
                                 <p>{{post.content}}</p>
@@ -76,7 +78,7 @@
                 
             <!-- SIDE BAR -->
             <div class="sidebar my-5">
-                <h2 class="welcome">Friend Suggestions</h2>
+                <h2 class="welcome">People You May Know</h2>
                 <div class="friend d-flex justify-content-between my-3">
                 {% for friend in friends_suggest%}
                     <div class="single-friend friend-1">
@@ -88,13 +90,22 @@
                     </div>
                 {%endfor%}
 
-<!--                     <div class="single-friend">
+                    <div class="single-friend">
                         <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
                             alt="placeholder image"><br>
+                            <p>Izuku Midoriya</p>
                         <form action="#">
                             <input class="btn btn-friend my-3" type="submit" value="Add Friend">
                         </form>
-                    </div> -->
+                    </div>
+                    <div class="single-friend">
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
+                            alt="placeholder image"><br>
+                            <p>Ochaco Ururaka</p>
+                        <form action="#">
+                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
