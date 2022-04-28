@@ -36,32 +36,22 @@
     
             <!-- FRIENDS SECTION -->
             <div class="friend-section my-5">
-                <h2>All User's Posts</h2>
+                <h2>Your Posts</h2>
                 <div class="friends d-flex justify-content-between">
-                {%for friend in friends %}
-                    <div class="single-friend">
-                        <p>{{friend.first_name}} {{friend.last_name}}</p>
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
-                            alt="placeholder image">
-                        <form action="/removefriend/{{friend.following_id}}">
-                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
-                        </form>
+                    {% for post in posts %}
+                    <div>
+                        <p>{{post.content}}</p>
+                        <div class="d-flex justify-content-between">
+                            <p>Posted By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
+                            <p>Created On: {{post.created_at.strftime('%d-%m-%Y')}}</p>
+                        </div>
+                        <div>
+                            <a href="/edit/post/{{post['id']}}">Edit</a>
+                            <a href="/delete/post/{{post['id']}}">Delete</a>
+                        </div>
                     </div>
-                {%endfor%}
-<!--                     <div class="single-friend">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
-                            alt="placeholder image">
-                        <form action="#">
-                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
-                        </form>
-                    </div>
-                    <div class="single-friend">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}"
-                            alt="placeholder image">
-                        <form action="#">
-                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
-                        </form>
-                    </div> -->
+                    <hr>
+                    {% endfor %}
                 </div>
             </div>
         </div>
