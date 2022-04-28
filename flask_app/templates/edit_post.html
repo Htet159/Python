@@ -9,14 +9,19 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
     <title>SHAREit - Edit Post</title>
 </head>
-<body>
-    <div class="container d-flex justify-content-between my-5">
-        <h1>SHAREit</h1>
-        <h3><a href="#">Dashboard</a> | <a href="#">Profile</a> | <a href="/logout">Sign Out</a></h3>
+<body class="dashboard">
+    <div class="d-flex justify-content-between nav">
+        <h1 class="blue-title">SHAREit</h1>
+        <h3 class="d-flex justify-content-around">
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+            <a class="nav-link" href="/profile">Profile</a>
+            <a class="nav-link ml-3" href="/logout">Sign Out</a>
+        </h3>
     </div>
 
-    <div>
-        <form action="/update/post" method = "post" class="bg-light p-5">
+    <div class="main my-5">
+        <h2 class="welcome">Edit Post</h2>
+        <form action="/update/post" method = "post">
             {% with messages = get_flashed_messages(category_filter=['post']) %}
                 {% if messages %}
                     {% for message in messages %}
@@ -26,12 +31,15 @@
             {% endwith %}
             <div class="comment">
                 <input type="hidden" name="id" value="{{posts['id']}}">
-                <div class="mb-3">
-                    <label for="content">Write a post:</label><br>
-                    <input type="text" name="content" class="form-control" value="{{posts['content']}}">
+                <div class="full-input my-3">
+                    <label for="content">Write a post:</label>
+                    <input type="text" name="content" value="{{posts['content']}}">
                 </div>
             </div>
-            <input class="btn my-3" type="submit" value="Update Post">
+            <!-- <input class="btn my-3" type="submit" value="Update Post"> -->
+            <div>
+                <input class="btn register-btn my-3" type="submit" value="Update Post">
+            </div>
         </form>
     </div>
 </body>
