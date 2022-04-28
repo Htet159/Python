@@ -304,6 +304,16 @@ a.nav-link:active {
     color: #000;
     background-color: #F2cB05;
     border-radius: 20px;
+    text-align: center;
+}
+
+.edit-btn {
+    background-color: #F5055A;
+    color: #fff;
+}
+
+input.btn-friend {
+    width: 150px;
 }
 
 .btn-friend:hover {
@@ -328,7 +338,22 @@ a.nav-link:active {
     padding: 25px;
 } 
 
+.posts-1 {
+    height: 100%;
+}
+
 .post {
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+.single-friend {
+    align-items: center;
+}
+
+
+.friends {
     background-color: #fff;
     border-radius: 25px;
     padding: 15px;

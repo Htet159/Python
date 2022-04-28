@@ -29,25 +29,31 @@
                         alt="placeholder image"><br>
                 </div>
                 <div>
-                    <h2>Profile</h2>
-                    <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
+                    <h2 class="welcome">Profile</h2>
+                    <h3 class="welcome">Name: {{user.first_name}} {{user.last_name}}</h3>
                 </div>
             </div>
     
             <!-- FRIENDS SECTION -->
-            <div class="friend-section my-5">
-                <h2>Your Posts</h2>
-                <div class="friends d-flex justify-content-between">
+            <div class="friend-section posts-1 my-5">
+                <h2 class="welcome">Your Posts</h2>
+                <div class="friends my-3">
                     {% for post in posts %}
-                    <div>
+                    <div class="post">
                         <p>{{post.content}}</p>
                         <div class="d-flex justify-content-between">
-                            <p>Posted By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
-                            <p>Created On: {{post.created_at.strftime('%d-%m-%Y')}}</p>
+                            <!-- <p>Posted By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p> -->
+                            <p>Created On: {{post.created_at.strftime('%B %d, %Y')}}</p>
                         </div>
-                        <div>
-                            <a href="/edit/post/{{post['id']}}">Edit</a>
-                            <a href="/delete/post/{{post['id']}}">Delete</a>
+                        <div class="d-flex justify-content-between">
+                            <!-- <a href="/edit/post/{{post['id']}}">Edit</a> -->
+                            <form action="/edit/post/{{post['id']}}">
+                                <input class="btn btn-friend edit-btn" type="submit" value="Edit">
+                            </form>
+                            <!-- <a href="/delete/post/{{post['id']}}">Delete</a> -->
+                            <form action="/delete/post/{{post['id']}}">
+                                <input class="btn btn-friend" type="submit" value="Delete">
+                            </form>
                         </div>
                     </div>
                     <hr>

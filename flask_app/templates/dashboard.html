@@ -63,7 +63,7 @@
                                 <p>{{post.content}}</p>
                                 <div class="d-flex justify-content-between">
                                     <p>Posted By: {{post.user_id.first_name}} {{post.user_id.last_name}}</p>
-                                    <p>Created On: {{post.created_at.strftime('%d-%m-%Y')}}</p>
+                                    <p>Created On: {{post.created_at.strftime('%B %d, %Y')}}</p>
                                     <form action="/like/{{post['id']}}">
                                         <input class="btn btn-friend my-3" type="submit" value="{{post['likes']}} Like(s)">
                                     </form>
@@ -79,7 +79,7 @@
             <!-- SIDE BAR -->
             <div class="sidebar my-5">
                 <h2 class="welcome">People You May Know</h2>
-                <div class="friend d-flex justify-content-between my-3">
+                <div class="friend d-flex justify-content-between my-2">
                 {% for friend in friends_suggest%}
                     <div class="single-friend friend-1">
                         <p>{{friend.first_name}} {{friend.last_name}}</p>
@@ -89,23 +89,21 @@
                         </form>
                     </div>
                 {%endfor%}
-                    <div class="single-friend">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                            alt="placeholder image"><br>
-                            <p>Izuku Midoriya</p>
+            </div>
+                    <div class="single-friend d-flex justify-content between">
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}" alt="placeholder image"><br>
+                            <p class="my-3">Izuku Midoriya</p>
                         <form action="#">
                             <input class="btn btn-friend my-3" type="submit" value="Add Friend">
                         </form>
                     </div>
-                    <div class="single-friend">
-                        <img class="friend-img" src="{{url_for('static',filename = 'images/placeholder-image.png')}}"
-                            alt="placeholder image"><br>
-                            <p>Ochaco Ururaka</p>
+                    <div class="single-friend my-3 d-flex justify-content between">
+                        <img class="friend-img" src="{{url_for('static',filename = 'images/default-user.png')}}" alt="placeholder image"><br>
+                            <p class="my-3">Ochaco Ururaka</p>
                         <form action="#">
-                            <input class="btn btn-friend my-3" type="submit" value="Remove Friend">
+                            <input class="btn btn-friend" type="submit" value="Remove Friend">
                         </form>
                     </div>
-                </div>
             </div>
         </div>
     </body>
