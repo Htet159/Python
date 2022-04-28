@@ -9,6 +9,7 @@
     width: 120px;
     background-color: #3c568f;
     margin: 0 auto;
+    border: #3c568f solid 4px;
 }
 
 h1 {
@@ -306,8 +307,8 @@ a.nav-link:active {
 }
 
 .btn-friend:hover {
-    background-color: #B9DEFA;
-    color: #000;
+    background-color: #3c568f;
+    color: #fff;
 }
 
 .top-section {
@@ -326,3 +327,9 @@ a.nav-link:active {
     border-radius: 20px;
     padding: 25px;
 } 
+
+.post {
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 15px;
+}
