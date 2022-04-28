@@ -56,7 +56,7 @@ def dashboard():
         'id':session['user_id']
     }
     user = User.get_user_by_id(data)  #grabs login information using login id from sessions
-    posts = Post.allPostsWithUserInfo() #grabs all posts with their user information and their cheer information
+    posts = Post.all_posts_with_likes_and_users() #grabs all posts with their user information and their cheer information
     friends_suggest = User.allFriendSuggestions(data)# for now showing all friends not friends with (no mutuals)
     
     return render_template('dashboard.html' , user = user, posts = posts, friends_suggest = friends_suggest) #connects html and brings in variables into html
@@ -107,3 +107,16 @@ def posts():
 def logout():
     session.clear()
     return redirect('/')
+
+
+@app.route("/like/<int:id>")
+def like_action(id):
+    if 'user_id' not in session:
+        flash("You must be signed in to view this page.")
+        return redirect('/logout')
+    data = {
+        "p_id" : id,
+        "u_id" : session['user_id']
+    }
+    Post.like_or_unlike_post(data)
+    return redirect("/dashboard")

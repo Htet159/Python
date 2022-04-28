@@ -9,7 +9,8 @@ def like_action(id):
         flash("You must be signed in to view this page.")
         return redirect('/logout')
     data = {
-        "id" : id
+        "p_id" : id,
+        "u_id" : session['user_id']
     }
     user.User.like_or_unlike_post(data)
     return redirect("/dashboard")
